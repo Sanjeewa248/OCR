@@ -15,14 +15,12 @@ function upload() {
     var input = document.getElementById("upload");
     var selectedFile = input.files[0];
     var reader = new FileReader();
-
+    var base64EncodedData; 
     reader.onload = function (event) {
-        var base64EncodedData = event.target.result;
+        base64EncodedData = event.target.result;
         recognizeImage(base64EncodedData);
     };
-
     reader.readAsDataURL(selectedFile);
-    var selectedFile = input.files[0];
     var form = new FormData();
     form.append("file", selectedFile);
     var req = new XMLHttpRequest();
@@ -31,21 +29,15 @@ function upload() {
     req.onreadystatechange = () => {
         if (req.readyState == 4) {
             // alert(req.responseText);
+            recognizeImage(base64EncodedData); 
         }
-        req.onreadystatechange = () => {
-            if (req.readyState == 4) {
-                // alert(req.responseText);
-                recognizeImage();
-            }
-        };
     };
 }
-
-function recognizeImage(base64EncodedData) {
+ function recognizeImage(base64EncodedData) {
     Tesseract.recognize(base64EncodedData, 'eng', {
         logger: m => console.log(m)
     }).then(({ data: { text } }) => {
-        // Display the OCR result (text) in an element with the ID "ocrResult" in your HTML
+        // Display the OCR result (text) in an element with the ID "ocrResult" in HTML
         document.getElementById("ocrResult").innerText = text;
     });
 }
