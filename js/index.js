@@ -1,20 +1,32 @@
-/*  ==========================================
-    SHOW UPLOADED IMAGE
-* ========================================== */
 var input = document.getElementById("upload");
 var infoArea = document.getElementById("upload-label");
 
 input.addEventListener("change", showFileName);
+
 function showFileName(event) {
     var input = event.srcElement;
     var fileName = input.files[0].name;
-    infoArea.textContent = "File name: " + fileName;
+    var limit = 20; 
+
+    if (fileName.length > limit) {
+        var truncatedFileName = fileName.substring(0, limit) + "...";
+        infoArea.textContent = "File name: " + truncatedFileName;
+    } else {
+        infoArea.textContent = "File name: " + fileName;
+    }
 }
+
 
 function upload() {
     var input = document.getElementById("upload");
     var selectedFile = input.files[0];
     var reader = new FileReader();
+
+    // Disable the upload button and show "Processing" text
+    var uploadButton = document.querySelector(".btn-primary");
+    uploadButton.disabled = true;
+    uploadButton.classList.add("processing");
+    uploadButton.innerHTML = '<i class="fa fa-spinner fa-spin me-2"></i> Processing';
 
     reader.onload = function (event) {
         var base64EncodedData = event.target.result;
@@ -50,6 +62,12 @@ function recognizeImage(base64EncodedData) {
             if (req.readyState == 4 && req.status == 200) {
                 // Handle the response from the server, if necessary
                 console.log(req.responseText);
+
+                // Enable the upload button and restore its original text
+                var uploadButton = document.querySelector(".btn-primary");
+                uploadButton.disabled = false;
+                uploadButton.classList.remove("processing");
+                uploadButton.innerHTML = '<i class="fa fa-upload me-2"></i> Upload';
             }
         };
 
@@ -57,7 +75,4 @@ function recognizeImage(base64EncodedData) {
         req.send(form);
     });
 }
-
-
-
 

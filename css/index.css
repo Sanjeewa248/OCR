@@ -49,8 +49,49 @@
 */
 body {
     min-height: 100vh;
-    background-color: #757f9a;
-    background-image: linear-gradient(147deg, #757f9a 0%, #d7dde8 100%);
+    background-color: #222;
+    background-image: linear-gradient(147deg, #222 0%, #444 100%);
+    color: #fff;
+}
+
+.input-group,
+.form-control {
+    background-color: #333;
+    color: #fff;
+    border-color: #555;
+}
+
+.input-group-append .btn-light,
+.btn-primary {
+    background-color: #555;
+    color: #fff;
+    border-color: #555;
+}
+
+.input-group-append .btn-light:hover,
+.btn-primary:hover {
+    background-color: #777;
+    border-color: #777;
+}
+
+#ocrResult {
+    background-color: #444;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    white-space: pre-wrap;
+}
+
+#ocrResult::selection {
+    background-color: #555;
+}
+
+#ocrResult::-moz-selection {
+    background-color: #555;
+}
+
+#ocrResult::-webkit-selection {
+    background-color: #555;
 }
 
 .btn-primary i.fa-spin::before {
@@ -64,5 +105,41 @@ body {
     border-color: currentColor transparent transparent transparent;
 }
 
+/* Additional styles to make the result area use more horizontal space */
+.row.py-4 {
+    justify-content: center;
+}
 
-/*
+.col-lg-12 {
+    display: flex;
+    justify-content: center;
+}
+.btn-primary.processing,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:hover {
+    outline: none;
+    box-shadow: none;
+    background-color: #555 !important;
+    border-color: #555 !important;
+}
+
+.btn-primary.processing,
+.btn-primary.processing:focus,
+.btn-primary.processing:active {
+    background-color: #555 !important;
+    border-color: #555 !important;
+}
+
+.btn-primary.processing:hover {
+    background-color: #777 !important;
+    border-color: #777 !important;
+}
+
+.btn-primary.processing i.fa-spin::before {
+    border-color: currentColor transparent transparent transparent;
+}
+
+
+
+

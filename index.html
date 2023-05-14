@@ -15,52 +15,42 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous">
+
 
 </head>
 
 <body>
     <div class="container py-5">
-
-        <!-- For demo purpose -->
-        <header class="text-white text-center">
-            <h1 class="display-4">Optical Character Recognition</h1>
-            <p class="lead mb-0">Easily extract text from your images - simply upload your image and let our system do
-                the rest.</p>
-            <img src="https://bootstrapious.com/i/snippets/sn-img-upload/image.svg" alt="" width="150" class="mb-4">
-        </header>
-
-
-        <div class="row py-4">
-            <div class="col-lg-6 mx-auto">
-
-                <!-- Upload image form -->
-
-                <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                    <input id="upload" type="file" accept="image/*"
-                        
-                        class="form-control border-0" name="upload">
-                    <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose image</label>
-                    <div class="input-group-append">
-                        <label for="upload" class="btn btn-light m-0 rounded-pill px-4">
-                            <i class="fa fa-cloud-upload mr-2 text-muted"></i>
-                            <small class="text-uppercase font-weight-bold text-muted">Choose file</small>
-                        </label>
-                        <button type="submit" onclick="upload()" class="btn btn-primary rounded-pill px-4 ms-2">
-                            <i class="fa fa-upload me-2"></i>
-                            <small class="text-uppercase font-weight-bold">Upload</small>
-                        </button>
-                        
-                    </div>
+    <!-- For demo purpose -->
+    <header class="text-white text-center">
+        <h1 class="display-4">Optical Character Recognition</h1>
+        <p class="lead mb-0">Easily extract text from your images - simply upload your image and let our system do the rest.</p>
+        <img src="https://bootstrapious.com/i/snippets/sn-img-upload/image.svg" alt="" width="150" class="mb-4">
+    </header>
+    <div class="row py-4">
+        <div class="col-lg-6 mx-auto">
+            <!-- Upload image form -->
+            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                <input id="upload" type="file" accept="image/*" class="form-control border-0" name="upload">
+                <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose image</label>
+                <div class="input-group-append">
+                    <button type="submit" onclick="upload()" class="btn btn-primary rounded-pill px-4 ms-2">
+                        <i class="fa fa-upload me-2"></i>
+                        <small class="text-uppercase font-weight-bold">Upload</small>
+                    </button>
                 </div>
-                <div class="row py-4">
-                    <div class="col-lg-6 mx-auto">
-                        <!-- Add this element to display the OCR result -->
-                        <div id="ocrResult" class="mt-4 text-center text-white" id="imageResult"></div>
-                    </div>
+            </div>
+            <div class="row py-4">
+                <div class="col-lg-12">
+                    <!-- Add this element to display the OCR result -->
+                    <div id="ocrResult" class="mt-4 text-center text-white"></div>
                 </div>
-
             </div>
         </div>
+    </div>
+</div>
+
         <script src="./js/index.js"></script>
 </body>
 
