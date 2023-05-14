@@ -22,23 +22,6 @@ function upload() {
     };
 
     reader.readAsDataURL(selectedFile);
-    var selectedFile = input.files[0];
-    var form = new FormData();
-    form.append("file", selectedFile);
-    var req = new XMLHttpRequest();
-    req.open("POST", "upload.php", true);
-    req.send(form);
-    req.onreadystatechange = () => {
-        if (req.readyState == 4) {
-            // alert(req.responseText);
-        }
-        req.onreadystatechange = () => {
-            if (req.readyState == 4) {
-                // alert(req.responseText);
-                recognizeImage();
-            }
-        };
-    };
 }
 
 function recognizeImage(base64EncodedData) {
@@ -47,5 +30,34 @@ function recognizeImage(base64EncodedData) {
     }).then(({ data: { text } }) => {
         // Display the OCR result (text) in an element with the ID "ocrResult" in your HTML
         document.getElementById("ocrResult").innerText = text;
+
+        // Create a new FormData object
+        var form = new FormData();
+
+        // Append the OCR result as a form field
+        form.append("ocrResult", text);
+
+        // Append the file data to the FormData object
+        var input = document.getElementById("upload");
+        form.append("file", input.files[0]);
+
+        // Create a new XMLHttpRequest object
+        var req = new XMLHttpRequest();
+        req.open("POST", "upload.php", true);
+
+        // Set up a callback function for when the request completes
+        req.onreadystatechange = function () {
+            if (req.readyState == 4 && req.status == 200) {
+                // Handle the response from the server, if necessary
+                console.log(req.responseText);
+            }
+        };
+
+        // Send the FormData object as the request body
+        req.send(form);
     });
 }
+
+
+
+
